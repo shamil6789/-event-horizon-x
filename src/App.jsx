@@ -145,12 +145,12 @@ void main(){
   mat3 R=RY*RX;
 
   // Pulled closer + wider FOV = bigger black hole on screen
-  vec3 camPos=R*vec3(0.,3.5,22.);
+  vec3 camPos=R*vec3(0.,3.5,26.);
   vec3 forward=normalize(-camPos);
   vec3 right2=normalize(cross(forward,vec3(0.,1.,0.)));
   vec3 up2=cross(right2,forward);
 
-  float fov=0.72;  // wider = bigger
+  float fov=0.65;  // wider = bigger
   vec3 rd=normalize(forward+uv.x*right2*fov+uv.y*up2*fov);
 
   // Ray march
