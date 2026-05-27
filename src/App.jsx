@@ -242,7 +242,11 @@ export default function App() {
     mount.appendChild(renderer.domElement);
 
     const scene  = new THREE.Scene();
-    const camera = new THREE.OrthographicCamera(-1,1,1,-1,0,1);
+    const camera = new THREE.OrthographicCamera(-3, 3, 3, -3, 0.1, 1000);
+
+camera.position.set(0, 0, 10);
+camera.zoom = 0.8;
+camera.updateProjectionMatrix();
 
     const uniforms = {
       uTime:  { value: 0 },
@@ -250,10 +254,18 @@ export default function App() {
       uMouse: { value: new THREE.Vector2(0, 0) },
     };
 
-    scene.add(new THREE.Mesh(
-      new THREE.PlaneGeometry(2,2),
-      new THREE.ShaderMaterial({ vertexShader:vert, fragmentShader:frag, uniforms })
-    ));
+    const mesh = new THREE.Mesh(
+  new THREE.PlaneGeometry(2, 2),
+  new THREE.ShaderMaterial({
+    vertexShader: vert,
+    fragmentShader: frag,
+    uniforms
+  })
+);
+
+mesh.scale.set(0.65, 0.65, 0.65);
+
+scene.add(mesh);
 
     let dragging=false, px=0, py=0, vx=0, vy=0, accX=0, accY=0;
 
