@@ -145,12 +145,12 @@ void main(){
   mat3 R=RY*RX;
 
   // Pulled closer + wider FOV = bigger black hole on screen
-  vec3 camPos=R*vec3(0.,3.0,17.);
+  vec3 camPos=R*vec3(0.,3.5,22.);
   vec3 forward=normalize(-camPos);
   vec3 right2=normalize(cross(forward,vec3(0.,1.,0.)));
   vec3 up2=cross(right2,forward);
 
-  float fov=0.82;  // wider = bigger
+  float fov=0.72;  // wider = bigger
   vec3 rd=normalize(forward+uv.x*right2*fov+uv.y*up2*fov);
 
   // Ray march
@@ -237,7 +237,7 @@ export default function App() {
     let W = mount.clientWidth, H = mount.clientHeight;
 
     const renderer = new THREE.WebGLRenderer({ antialias: false });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(0.75);
     renderer.setSize(W, H);
     mount.appendChild(renderer.domElement);
 
@@ -321,7 +321,17 @@ export default function App() {
         <div>RELATIVISTIC JET · BIPOLAR</div>
       </div>
 
-      <div style={{
+    <div style={{
+  position:"absolute",bottom:20,right:20,
+  fontFamily:"'Courier New',monospace",
+  color:"rgba(150,180,255,0.3)",
+  fontSize:10,textAlign:"right",
+  pointerEvents:"none",letterSpacing:"0.07em",
+}}>
+  gravitational lensing · schwarzschild metric
+</div>
+
+<div style={{
         position:"absolute",bottom:20,right:20,
         fontFamily:"'Courier New',monospace",
         color:"rgba(150,180,255,0.3)",
@@ -330,6 +340,17 @@ export default function App() {
       }}>
         gravitational lensing · schwarzschild metric
       </div>
+
+      <div style={{
+        position:"absolute",bottom:20,left:20,
+        fontFamily:"'Courier New',monospace",
+        color:"rgba(255,220,50,0.6)",
+        fontSize:10,
+        pointerEvents:"none",letterSpacing:"0.07em",
+      }}>
+        by <span style={{color:"#ffdd00"}}>Shamil</span>
+      </div>
+
     </div>
   );
 }
