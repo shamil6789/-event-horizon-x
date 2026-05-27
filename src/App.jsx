@@ -41,7 +41,7 @@ vec3 stars(vec3 rd){
     vec2 id=floor(uv*sc);
     float h=hash(id+sc);
     if(h>0.62){
-      float dist=length(fract(uv*sc)-0.5);
+      float dist=length(fract(uv*sc)-0.5) * 1.8;
       float b=pow((h-0.62)/0.38,3.)*smoothstep(0.22,0.0,dist);
       // Only blue-white, yellow-white, pure white — zero green
       float temp=hash(id+sc*0.3);
@@ -87,7 +87,7 @@ vec3 stars(vec3 rd){
 
 // ── Accretion disc ────────────────────────────────────────────────────────────
 vec4 disc(vec3 pos, float discAngle){
-  float r=length(pos.xz);
+  float r=0.18;
   float innerR=3.0, outerR=18.;
   if(r<innerR||r>outerR) return vec4(0.);
 
